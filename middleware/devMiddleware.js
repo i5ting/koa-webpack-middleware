@@ -44,11 +44,11 @@ module.exports = (compiler, opts) => {
    
     ctx.entry = (name) => {
       const styles = normalizeAssets(assetsByChunkName[name])
-      .filter(path => endsWith(path+''  , '.css'))
+      .filter(path => endsWith(path, '.css'))
       .map(path => fs.readFileSync(outputPath + '/' + path))
       .join('\n')
     const scripts = normalizeAssets(assetsByChunkName[name])
-      .filter(path => endsWith(path+'', '.js'))
+      .filter(path => endsWith(path, '.js'))
       .map(path => `<script src="${path}"></script>`)
       .join('\n')
 
