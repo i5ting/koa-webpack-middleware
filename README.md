@@ -96,15 +96,5 @@ app.use( (ctx, next ) => {
     },
     ```
 
-4. put the code in your entry file to enable HMR
-
-    > React project do not need
-
-    ```js
-    if (module.hot) {
-      module.hot.accept()
-    }
-    ```
-
 That's all, you're all set!
     
