@@ -17,6 +17,10 @@
     "lib"
   ],
   "scripts": {
+    "dev": "webpack --config example/react/webpack.config --watch --progress & nodemon example/react/index.js",
+    "linter": "eslint src",
+    "bundlesize": "bundlesize",
+    "precommit": "eslint src --quiet",
     "lint": "standard | snazzy",
     "test": "npm run lint",
     "build": "npm run lint && babel -d lib/ middleware/"
@@ -31,15 +35,6 @@
     "url": "https://github.com/leecade/koa-webpack-middleware/issues"
   },
   "homepage": "https://github.com/leecade/koa-webpack-middleware#readme",
-  "devDependencies": {
-    "babel-cli": "6.24.1",
-    "babel-core": "6.25.0",
-    "babel-eslint": "^7.1.0",
-    "babel-preset-es2015": "6.24.1",
-    "babel-preset-stage-0": "^6.24.1",
-    "snazzy": "7.0.0",
-    "standard": "^10.0.0-beta.0"
-  },
   "peerDependencies": {
     "koa": "^2.0.0"
   },
@@ -51,8 +46,66 @@
     ]
   },
   "dependencies": {
-    "webpack-dev-middleware": "1.12.0",
-    "webpack-hot-middleware": "2.18.2",
-    "regenerator-runtime": "0.10.5"
+    "regenerator-runtime": "0.13.1",
+    "webpack-dev-middleware": "3.4.0",
+    "webpack-hot-middleware": "2.24.3"
+  },
+  "devDependencies": {
+    "babel-cli": "6.24.1",
+    "babel-core": "^6.26.0",
+    "babel-eslint": "^8.0.2",
+    "babel-jest": "^21.2.0",
+    "babel-loader": "^7.1.2",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-es2015": "6.24.1",
+    "babel-preset-react": "^6.3.13",
+    "babel-preset-stage-0": "^6.24.1",
+    "babel-register": "^6.26.0",
+    "bundlesize": "^0.16.0",
+    "enzyme": "^3.2.0",
+    "enzyme-adapter-react-16": "^1.1.0",
+    "eslint": "^4.12.0",
+    "eslint-config-fortech-react": "^1.0.2",
+    "eslint-loader": "^1.9.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-jsx-a11y": "^6.0.2",
+    "eslint-plugin-react": "^7.5.1",
+    "friendly-errors-webpack-plugin": "^1.6.1",
+    "husky": "^0.14.3",
+    "jest": "^21.2.1",
+    "koa": "2.6.2",
+    "koa-static": "5.0.0",
+    "nodemon": "^1.17.2",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
+    "snazzy": "7.0.0",
+    "standard": "^10.0.0-beta.0",
+    "webpack": "^4.0.0",
+    "webpack-bundle-analyzer": "^2.9.1",
+    "webpack-cli": "3",
+    "webpack-dev-server": "^3.0.0"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "Firefox ESR"
+  ],
+  "bundlesize": [
+    {
+      "path": "./dist/js/app.bundle.js",
+      "maxSize": "170 kB"
+    },
+    {
+      "path": "./dist/js/lib.bundle.js",
+      "maxSize": "110 kB"
+    }
+  ],
+  "jest": {
+    "transform": {
+      "^.+\\.jsx$": "babel-jest",
+      "^.+\\.js$": "babel-jest"
+    },
+    "setupTestFrameworkScriptFile": "<rootDir>/test-config/test-setup.js"
   }
 }

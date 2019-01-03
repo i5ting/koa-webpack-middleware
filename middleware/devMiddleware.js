@@ -1,10 +1,10 @@
-import devMiddleware from 'webpack-dev-middleware'
+const devMiddleware = require('webpack-dev-middleware')
 
-export default (compiler, opts) => {
+module.exports = (compiler, opts) => {
   const expressMiddleware = devMiddleware(compiler, opts)
 
-  async function middleware (ctx, next) {
-    await expressMiddleware(ctx.req, {
+  return function middleware (ctx, next) {
+    return expressMiddleware(ctx.req, {
       end: (content) => {
         ctx.body = content
       },

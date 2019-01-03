@@ -1,4 +1,4 @@
-import 'regenerator-runtime/runtime'
-import devMiddleware from './devMiddleware'
-import hotMiddleware from './hotMiddleware'
+// import 'regenerator-runtime/runtime'
+const devMiddleware = require('./devMiddleware')
+const hotMiddleware = require('./hotMiddleware')
 module.exports = { devMiddleware, hotMiddleware }
