@@ -1,6 +1,6 @@
 {
-  "name": "koa-webpack-middleware3",
-  "version": "1.0.7",
+  "name": "kwm",
+  "version": "1.0.0",
   "keywords": [
     "react",
     "hot",
