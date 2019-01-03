@@ -12,7 +12,7 @@
 $ npm i kwm -D
 ```
 
-## exmaple
+## Exmaple
 
 ```
 $ npm i
