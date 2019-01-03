@@ -13,8 +13,7 @@
   "description": "webpack dev&amp;hot middleware for koa2",
   "main": "middleware/index.js",
   "files": [
-    "middleware",
-    "lib"
+    "middleware"
   ],
   "scripts": {
     "dev": "webpack --config example/react/webpack.config --progress & node example/react/index.js",
