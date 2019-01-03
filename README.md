@@ -29,6 +29,8 @@ import webpack from 'webpack'
 import kwm from 'kwm'
 import devConfig from './webpack.config.dev'
 const compile = webpack(devConfig)
+
+// kwm(compile, devConf, hotConf) 
 app.use(kwm(compile)
 
 app.use( (ctx, next ) => {
