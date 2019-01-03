@@ -12,6 +12,13 @@
 $ npm i kwm -D
 ```
 
+## exmaple
+
+```
+$ npm i
+$ npm run dev
+```
+
 ## Depends
 
 This middleware designd for koa2 ecosystem, make sure installed the right version:
@@ -77,44 +84,14 @@ app.use( (ctx, next ) => {
     },
     ```
 
-3. webpack `loader` configure 
+3. webpack `output` configure 
     
-    ```sh
-    $ npm i babel-preset-es2015 babel-preset-stage-0 -D
-    ```
-
     ```js
-    {
-      test: /\.js$/,
-      loader: 'babel',
-      query: {
-        'presets': ['es2015', 'stage-0']
-        }
-      },
-      include: './src'
-    }
-    ```
-
-    > HMR for react project
-
-    ```sh
-    $ npm i babel-preset-react babel-preset-react-hmre -D
-    ```
-
-    ```js
-    {
-      test: /\.jsx?$/,
-      loader: 'babel',
-      query: {
-        'presets': ['es2015', 'stage-0', 'react'],
-        'env': {
-          'development': {
-            'presets': ['react-hmre']
-          }
-        }
-      },
-      include: './src'
-    }
+    output: {
+        path: path.resolve( __dirname, "dist" ),
+        // filename: "[name].bundle.js",
+        filename: '[name].[hash].js'
+    },
     ```
 
 4. put the code in your entry file to enable HMR
