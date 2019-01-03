@@ -1,16 +1,29 @@
-const hotMiddleware = require('webpack-hot-middleware')
-const PassThrough = require('stream').PassThrough
+var hotMiddleware = require('webpack-hot-middleware')
+var PassThrough = require('stream').PassThrough
 
 module.exports = (compiler, opts) => {
-  const expressMiddleware = hotMiddleware(compiler, opts)
-  return (ctx, next) => {
+  opts.path = opts.path || '/__webpack_hmr'
+  
+  let middleware = hotMiddleware(compiler, opts)
+
+  return  (ctx, next) => {
+    if (ctx.request.path != opts.path) {
+      return  next()
+    }
+
     let stream = new PassThrough()
     ctx.body = stream
-    return expressMiddleware(ctx.req, {
+
+    middleware(ctx.req, {
       write: stream.write.bind(stream),
       writeHead: (status, headers) => {
         ctx.status = status
-        ctx.set(headers)
+        Object.keys(headers).forEach(key => {
+          ctx.set(key, headers[key])
+        })
+      },
+      end: () => {
+        stream.end();
       }
     }, next)
   }

@@ -4,7 +4,7 @@ import { renderToString } from "react-dom/server";
 import Layout from "./components/Layout";
 
 import webpack from 'webpack'
-import { devMiddleware, hotMiddleware } from '../../../middleware'
+import m from '../../../middleware'
 import devConfig from '../webpack.config'
 const Koa = require('koa');
 const app = new Koa();
@@ -22,37 +22,37 @@ function normalizeAssets(assets) {
   
 const compile = webpack(devConfig)
 
-app.use(devMiddleware(compile, {
-    serverSideRender: true
-}))
+app.use(m(compile))
 
-app.use(hotMiddleware(compile, {
-  // log: console.log,
-  // path: '/__webpack_hmr',
-  // heartbeat: 10 * 1000
-}))
 
 app.use( (ctx, next ) => {
-    const jsx = ( <Layout /> );
-    const reactDom = renderToString( jsx );
-    ctx.type = 'text/html; charset=utf-8';
-    ctx.body = ( htmlTemplate( reactDom ) );
+    if (ctx.path === '/'){
+        const jsx = ( <Layout /> );
+        const reactDom = renderToString( jsx );
+        ctx.styles = ctx.entry('app').styles
+        ctx.scripts = ctx.entry('app').scripts
+        ctx.type = 'html';
+        ctx.body = htmlTemplate( ctx, reactDom ) ;
+    }
 } );
 
-app.listen(3000);
+var server = app.listen(3000, () => {
+    server.keepAliveTimeout = 0;
+    })
 
-function htmlTemplate( reactDom ) {
+function htmlTemplate( ctx, reactDom ) {
     return `
         <!DOCTYPE html>
         <html>
         <head>
             <meta charset="utf-8">
             <title>React SSR</title>
+            ${ctx.styles}
         </head>
         
         <body>
             <div id="app">${ reactDom }</div>
-            <script src="./app.bundle.js"></script>
+            ${ctx.scripts}
         </body>
         </html>
     `;

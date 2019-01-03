@@ -3,7 +3,10 @@
       [ "env",
           {
               "modules": false,
-              "useBuiltIns": "usage"
+              "useBuiltIns": "usage",
+              "targets": {
+                "esmodules": true
+              }
           }
       ],
       "react",

@@ -1,5 +1,6 @@
 const dev = process.env.NODE_ENV !== "production";
 const path = require( "path" );
+const webpack = require( "webpack" );
 const { BundleAnalyzerPlugin } = require( "webpack-bundle-analyzer" );
 const FriendlyErrorsWebpackPlugin = require( "friendly-errors-webpack-plugin" );
 
@@ -20,7 +21,7 @@ module.exports = {
     context: path.join( __dirname, "src" ),
     devtool: dev ? "none" : "source-map",
     entry: {
-        app: "./client.js",
+        app: [ "./client.js", 'webpack-hot-middleware/client?reload=0'],
     },
     resolve: {
         modules: [
@@ -39,7 +40,14 @@ module.exports = {
     },
     output: {
         path: path.resolve( __dirname, "dist" ),
-        filename: "[name].bundle.js",
+        // filename: "[name].bundle.js",
+        filename: '[name].[hash].js'
     },
-    plugins,
+    plugins: [
+        // OccurrenceOrderPlugin is needed for webpack 1.x only
+        // new webpack.optimize.OccurrenceOrderPlugin(),
+        new webpack.HotModuleReplacementPlugin(),
+        // Use NoErrorsPlugin for webpack 1.x
+        // new webpack.NoEmitOnErrorsPlugin()
+    ]
 };

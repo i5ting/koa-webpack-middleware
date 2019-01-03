@@ -12,7 +12,7 @@ export default class Layout extends React.Component {
     render() {
         return (
             <div>
-                <h1>115{ this.state.title }</h1>
+                <h1>{ this.state.title }</h1>
             </div>
         );
     }

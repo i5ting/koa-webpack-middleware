@@ -1,5 +1,5 @@
 {
-  "name": "koa-webpack-middleware",
+  "name": "koa-webpack-middleware3",
   "version": "1.0.7",
   "keywords": [
     "react",
@@ -11,13 +11,13 @@
     "hmr"
   ],
   "description": "webpack dev&amp;hot middleware for koa2",
-  "main": "lib/index.js",
+  "main": "middleware/index.js",
   "files": [
     "middleware",
     "lib"
   ],
   "scripts": {
-    "dev": "webpack --config example/react/webpack.config --watch --progress & nodemon example/react/index.js",
+    "dev": "webpack --config example/react/webpack.config --progress & node example/react/index.js",
     "linter": "eslint src",
     "bundlesize": "bundlesize",
     "precommit": "eslint src --quiet",
@@ -46,7 +46,8 @@
     ]
   },
   "dependencies": {
-    "regenerator-runtime": "0.13.1",
+    "isobject": "3.0.1",
+    "koa-compose": "4.1.0",
     "webpack-dev-middleware": "3.4.0",
     "webpack-hot-middleware": "2.24.3"
   },
@@ -83,8 +84,7 @@
     "standard": "^10.0.0-beta.0",
     "webpack": "^4.0.0",
     "webpack-bundle-analyzer": "^2.9.1",
-    "webpack-cli": "3",
-    "webpack-dev-server": "^3.0.0"
+    "webpack-cli": "3.2.0"
   },
   "browserslist": [
     "> 1%",
