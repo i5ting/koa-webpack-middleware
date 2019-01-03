@@ -19,6 +19,8 @@ $ npm i
 $ npm run dev
 ```
 
+change  `example/react/src/components/Layout.js` #render() && save! 
+
 ## Depends
 
 This middleware designd for koa2 ecosystem, make sure installed the right version:
