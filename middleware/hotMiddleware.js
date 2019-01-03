@@ -1,5 +1,5 @@
-var hotMiddleware = require('webpack-hot-middleware')
-var PassThrough = require('stream').PassThrough
+const hotMiddleware = require('webpack-hot-middleware')
+const PassThrough = require('stream').PassThrough
 
 module.exports = (compiler, opts) => {
   opts.path = opts.path || '/__webpack_hmr'

@@ -1,5 +1,3 @@
-// import 'regenerator-runtime/runtime'
-
 const devMiddleware = require('./devMiddleware')
 const hotMiddleware = require('./hotMiddleware')
 const compose = require('koa-compose')

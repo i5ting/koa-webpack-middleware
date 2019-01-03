@@ -30,7 +30,23 @@ import kwm from 'kwm'
 import devConfig from './webpack.config.dev'
 const compile = webpack(devConfig)
 app.use(kwm(compile)
+
+app.use( (ctx, next ) => {
+    if (ctx.path === '/'){
+        const jsx = ( <Layout /> );
+        const reactDom = renderToString( jsx );
+        ctx.styles = ctx.entry('app').styles
+        ctx.scripts = ctx.entry('app').scripts
+        ctx.type = 'html';
+        ctx.body = htmlTemplate( ctx, reactDom ) ;
+    }
+} );
+
 ```
+
+- ctx.webpackStats = ctx.state.webpackStats
+- ctx.webpackFs = ctx.state.fs
+- ctx.entry('webpack_entry_key') return {styles, scripts}
 
 ## HMR configure
 

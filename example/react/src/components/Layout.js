@@ -1,4 +1,4 @@
-import React from "react";
+import React from "react"
 
 export default class Layout extends React.Component {
     constructor() {
@@ -7,7 +7,6 @@ export default class Layout extends React.Component {
             title: "Welcome to React SSR!",
         };
     }
-
 
     render() {
         return (
